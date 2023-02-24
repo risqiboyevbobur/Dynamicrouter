@@ -18,55 +18,54 @@ const About = () => {
   }, []);
 
   return (
-    <div className="container">
-      <input type="" onChange={(e) => setValue(e.target.value)} />
-
-      {users
-        .filter((res) => {
-          return res.name.toLocaleLowerCase() === " "
-          ? value
-          : res.name.toLocaleLowerCase().includes(value);
-        })
-        .map((curElem) => {
-          console.log(curElem.name);
-          return (
-            <div className="card_item" key={curElem.id}>
-              <Container>
-                <Row className="justify-content-center">
-                  <Col xs={3}>
-                    <Card style={{ width: "17rem" }}>
-                      <Card.Body>
-                        <img
-                          src="https://d3vgmmrg377kge.cloudfront.net/about/PublishingImages/campus-donors/hbs_aerial_shot_philanthroopy_home_640x360.jpg"
-                          alt=""
-                        />
-                        <Card.Title>
-                          <b>NAME: </b>
-                          {curElem.name}
-                        </Card.Title>
-                        <Card.Title>
-                          <b>EMAIL: </b>
-                          {curElem.email}
-                        </Card.Title>
-                        <Card.Title>
-                          <b>USERNAME: </b>
-                          {curElem.username}
-                        </Card.Title>
-                        <Card.Title>
-                          <b>PHONENUMBER: </b>
-                          {curElem.phone}
-                        </Card.Title>
-                        <Card.Text></Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                </Row>
-              </Container>
+    <div className="container-fluid mt-5">
+    <h1 style={{textAlign:"center"}}>List of jsonplaceholder's users</h1>
+       <div className="bigger">
+        <input
+          placeholder="Search  users..."
+          className="inp"
+          type="text"
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </div>
+    <div className="row text-center">
+      {users.filter((res) => {
+         return res.name.toLocaleLowerCase() === " "
+         ? value
+         : res.name.toLocaleLowerCase().includes(value);
+      }).map((curElem) => {
+        console.log(curElem);
+        return (
+          <div className="col-10 col-md-4 mt-5">
+            <div className="card p-2">
+              <div className="d-flex align-items-center">
+                <div className="image">
+                  <img style={{width:"170px", height:"150px"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZmqMjdzNHPpvfNrR3bZEaeAYorxmwlEvJWw&usqp=CAU" className="rounded" width={155} alt="" />
+                </div>
+                <div className="ml-3 w-100">
+                  <h4 className="mb-0 mt-0 textLeft"> <b>Name:</b> {curElem.name}</h4>{" "}
+                  <span className="textLeft"><b>Phone number:</b>{curElem.phone}</span>
+                  <br />
+                  <span className="textLeft"><b>Company name:</b>{curElem.company.name}</span>
+                  <br />
+                  <span className="textLeft"> <b>Place:</b> {curElem.address.city}</span>
+                  <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white starts">
+                    <div className="d-flex flex-column">
+                      <span className="articles"><b>Website</b></span>{curElem.website}
+                    </div>
+                    <div className="d-flex flex-column">
+                      <span className="followers">Username</span>{curElem.username}
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
             </div>
-          );
-        })}
+          </div>
+        );
+      })}
     </div>
+  </div>
   );
 };
 
